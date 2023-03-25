@@ -1,0 +1,8 @@
+funcion overall_z= pz(z, pdf_x, pdf_z)
+
+% calculate over all possible z given the pz_x and pz
+% its more a normalize term for the bayes px_z = pz_x * px / overall_z
+overall_z = trapz(z, pdfz_x.*pdf_x);
+
+return
+
