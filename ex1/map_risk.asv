@@ -1,0 +1,4 @@
+function risk = map_risk(pdf_x_z)
+
+global
+risk = 1 - max(pdf_x_z)*delta;
