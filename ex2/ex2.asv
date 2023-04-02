@@ -1,0 +1,153 @@
+close all
+clear
+
+%%%%%%%%%%%%%%%%%%%%%%
+% load (x1, z1) data
+load("data exercise 2/depthgauge_data_set1.mat")
+
+% scatter plot
+figure
+plot(x1, z1, '*')
+
+% calculating the mean of the data
+alpha_l = mean(x1.*z1)./mean(z1.*z1);
+
+% plot linear MMSE
+hold on
+z_temp = linspace(min(z1), max(z1), length(x1));
+x_l = alpha_l.*z_temp;
+plot(z_temp, x_l)
+
+% unbiased estimator
+alpha_ul = (mean(x1.*z1)-mean(x1)*mean(z1))./var(z1);
+beta_ul = mean(x1) - alpha_ul.*mean(z1);
+x_ul = alpha_ul.*z_temp+beta_ul;
+
+% plot unbiased linear MMSE
+plot(z_temp, x_ul)
+
+legend('z', 'x_{lMMSE}', 'x_{ulMMSE}')
+title("Scatter plot for (x1, z1)")
+xlabel("x")
+ylabel("Estimation")
+
+% linear MMSE performance
+e_l = x1 - x_l;
+bias_l = mean(e_l);
+var_l = var(e_l);
+
+% Unbiased linear MMSE performance
+e_ul = x1 - x_ul;
+bias_ul = mean(e_ul);
+var_ul = var(e_ul);
+
+fprintf("Dataset 1\n")
+fprintf("Optimal linear MMSE: x_{lMMSE} = %.3f * z\n", alpha_l)
+fprintf("Overall bias: %.3f\n", bias_l)
+fprintf("Error variance: %.3f\n", var_l)
+fprintf("Optimal Unbiased Linear MMSE: x_{ulMMSE} = %.3f * z + %.3f\n", alpha_ul, beta_ul)
+fprintf("Overall bias: %.3f\n", bias_ul)
+fprintf("Error variance: %.3f\n", var_ul)
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Dataset 2
+load("data exercise 2/depthgauge_data_set2.mat")
+
+% scatter plot
+figure
+plot(x2, z2, '.')
+
+% calculating the mean of the data
+alpha_l = mean(x2.*z2)./mean(z2.*z2);
+
+% plot linear MMSE
+hold on
+z_temp = linspace(min(z2), max(z2), length(x2));
+x_l = alpha_l.*z_temp;
+plot(z_temp, x_l)
+
+% unbiased estimator
+alpha_ul = (mean(x2.*z2)-mean(x2)*mean(z2))./var(z2);
+beta_ul = mean(x2) - alpha_ul.*mean(z2);
+x_ul = alpha_ul.*z_temp+beta_ul;
+
+% plot unbiased linear MMSE
+plot(z_temp, x_ul)
+
+legend('z', 'x_{lMMSE}', 'x_{ulMMSE}')
+title("Scatter plot for (x2, z2)")
+xlabel("x")
+ylabel("Estimation")
+
+
+% linear MMSE performance
+e_l = x1 - x_l;
+bias_l = mean(e_l);
+var_l = var(e_l);
+
+% Unbiased linear MMSE performance
+e_ul = x1 - x_ul;
+bias_ul = mean(e_ul);
+var_ul = var(e_ul);
+
+fprintf("Dataset 1\n")
+fprintf("Optimal linear MMSE: x_{lMMSE} = %.3f * z\n", alpha_l)
+fprintf("Overall bias: %.3f\n", bias_l)
+fprintf("Error variance: %.3f\n", var_l)
+fprintf("Optimal Unbiased Linear MMSE: x_{ulMMSE} = %.3f * z + %.3f\n", alpha_ul, beta_ul)
+fprintf("Overall bias: %.3f\n", bias_ul)
+fprintf("Error variance: %.3f\n", var_ul)
+%%%%%%%%%%%%%%%%%%%%%%
+% first dataset
+
+% second dataset
+
+% function for estimating and alaysing
+function estimate_from_data()
+    
+    % scatter plot
+    figure
+    plot(x, z, '.')
+    
+    % calculating the mean of the data
+    alpha_l = mean(x.*z)./mean(z.*z);
+    
+    % plot linear MMSE
+    hold on
+    z_temp = linspace(min(z), max(z), length(x));
+    x_l = alpha_l.*z_temp;
+    plot(z_temp, x_l)
+    
+    % unbiased estimator
+    alpha_ul = (mean(x.*z)-mean(x)*mean(z))./var(z);
+    beta_ul = mean(x) - alpha_ul.*mean(z);
+    x_ul = alpha_ul.*z_temp+beta_ul;
+    
+    % plot unbiased linear MMSE
+    plot(z_temp, x_ul)
+    
+    legend('z', 'x_{lMMSE}', 'x_{ulMMSE}')
+    title("Scatter plot for (x2, z2)")
+    xlabel("x")
+    ylabel("Estimation")
+    
+    
+    % linear MMSE performance
+    e_l = x - x_l;
+    bias_l = mean(e_l);
+    var_l = var(e_l);
+    
+    % Unbiased linear MMSE performance
+    e_ul = x - x_ul;
+    bias_ul = mean(e_ul);
+    var_ul = var(e_ul);
+    
+    fprintf("Dataset 1\n")
+    fprintf("Optimal linear MMSE: x_{lMMSE} = %.3f * z\n", alpha_l)
+    fprintf("Overall bias: %.3f\n", bias_l)
+    fprintf("Error variance: %.3f\n", var_l)
+    fprintf("Optimal Unbiased Linear MMSE: x_{ulMMSE} = %.3f * z + %.3f\n", alpha_ul, beta_ul)
+    fprintf("Overall bias: %.3f\n", bias_ul)
+    fprintf("Error variance: %.3f\n", var_ul)
+
+end
