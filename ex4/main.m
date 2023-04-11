@@ -90,6 +90,7 @@ function simulate_prediction(start)
     plot_elipses(x_ahead, Cx_ahead)
     xlabel('x (m)')
     ylabel('y (m)')
+    axis equal
     t=sprintf("Prediction starting in i = %d", start);
     title(t)
     legend(["Ground Truth" "Prediction"])
