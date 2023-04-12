@@ -1,3 +1,6 @@
+% exercise 2 optimal estimation of dynamic systems
+% author: Guilherme Soares Silvestre
+
 close all
 clear
 
